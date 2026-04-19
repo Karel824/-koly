@@ -8,7 +8,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; min-height: 100vh; }
 
-/* ---- LOGIN ---- */
+/* LOGIN */
 #loginScreen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 32px 24px; background: #f5f5f0; }
 .login-title { font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; letter-spacing: -0.5px; }
 .login-sub { font-size: 15px; color: #9ca3af; margin-bottom: 48px; }
@@ -21,7 +21,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .login-av { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; flex-shrink: 0; }
 .login-name { font-size: 20px; font-weight: 600; color: white; }
 
-/* ---- APP ---- */
+/* APP */
 #app { display: none; }
 
 .top-bar { background: white; border-bottom: 1px solid #e8e8e4; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
@@ -35,12 +35,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .switch-btn { font-size: 12px; color: #9ca3af; background: none; border: none; cursor: pointer; font-family: inherit; text-decoration: underline; display: block; padding: 0; }
 
 .tabs { display: flex; background: white; border-bottom: 1px solid #e8e8e4; padding: 0 16px; }
-.tab { padding: 12px 16px; font-size: 14px; font-weight: 500; color: #6b7280; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+.tab { padding: 12px 14px; font-size: 14px; font-weight: 500; color: #6b7280; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.15s; display: flex; align-items: center; gap: 6px; }
 .tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
+.tab-count { font-size: 11px; background: #f0f0ec; color: #6b7280; padding: 1px 6px; border-radius: 999px; font-weight: 600; transition: all 0.2s; }
+.tab.active .tab-count { background: #1a1a1a; color: white; }
 
 .content { padding: 16px; max-width: 600px; margin: 0 auto; }
 
-/* ---- ADD FORM ---- */
+/* ADD FORM */
 .add-form { background: white; border-radius: 14px; border: 1px solid #e8e8e4; padding: 14px; margin-bottom: 20px; }
 .add-form textarea { width: 100%; border: none; outline: none; font-size: 14px; color: #1a1a1a; resize: none; font-family: inherit; line-height: 1.5; min-height: 48px; background: transparent; }
 .add-form textarea::placeholder { color: #9ca3af; }
@@ -65,7 +67,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .add-btn.ok { background: #16a34a; }
 .add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ---- TASKS ---- */
+/* CARDS */
 .sec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px; }
 .sec-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; }
 .sec-count { font-size: 11px; background: #f0f0ec; color: #6b7280; padding: 1px 7px; border-radius: 999px; }
@@ -74,9 +76,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .card.done { opacity: 0.45; }
 .card.urgent { background: #fff5f5; border-color: #fca5a5; }
 
-.cb { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #d1d5db; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; }
+.cb { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #d1d5db; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; position: relative; }
 .cb:hover { border-color: #6b7280; }
-.cb.chk { background: #16a34a; border-color: #16a34a; position: relative; }
+.cb.chk { background: #16a34a; border-color: #16a34a; }
 .cb.chk::after { content: ''; position: absolute; left: 5px; top: 2px; width: 5px; height: 9px; border: 2px solid white; border-top: none; border-left: none; transform: rotate(45deg); }
 
 .card-body { flex: 1; min-width: 0; }
@@ -93,29 +95,57 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .pro-badge.radek { background: #dbeafe; color: #1e40af; }
 .pro-badge.vasek { background: #dcfce7; color: #166534; }
 .pro-badge.karel { background: #fef3c7; color: #92400e; }
-.pro-dot { width: 7px; height: 7px; border-radius: 50%; }
+.pro-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 .pro-badge.radek .pro-dot { background: #2563eb; }
 .pro-badge.vasek .pro-dot { background: #16a34a; }
 .pro-badge.karel .pro-dot { background: #d97706; }
 
-.del-btn { opacity: 0; background: none; border: none; color: #d1d5db; cursor: pointer; font-size: 20px; padding: 0 2px; flex-shrink: 0; line-height: 1; transition: opacity 0.15s, color 0.15s; }
-.card:hover .del-btn { opacity: 1; }
-.del-btn:hover { color: #ef4444; }
-
-.empty { text-align: center; padding: 40px 20px; color: #c4c4bc; font-size: 14px; }
-.loading { text-align: center; padding: 40px; color: #9ca3af; font-size: 14px; }
-
-#toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: white; padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 999; white-space: nowrap; }
-#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ACTION BUTTONS */
+.card-actions { display: flex; gap: 4px; flex-shrink: 0; opacity: 0; transition: opacity 0.15s; margin-top: 1px; }
+.card:hover .card-actions { opacity: 1; }
+.action-btn { background: none; border: 1px solid #e8e8e4; border-radius: 7px; color: #9ca3af; cursor: pointer; font-size: 13px; padding: 3px 7px; line-height: 1.4; transition: all 0.15s; font-family: inherit; }
+.action-btn:hover { border-color: #d1d5db; color: #374151; background: #f9f9f7; }
+.action-btn.del:hover { border-color: #fca5a5; color: #dc2626; background: #fef2f2; }
 
 @media (max-width: 480px) {
   .content { padding: 12px; }
-  .del-btn { opacity: 1; }
+  .card-actions { opacity: 1; }
 }
+
+/* EDIT MODAL */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+.modal-bg.open { display: flex; }
+.modal { background: white; border-radius: 18px; padding: 20px; width: 100%; max-width: 440px; }
+.modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 14px; color: #1a1a1a; }
+.modal textarea { width: 100%; border: 1px solid #e8e8e4; border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; resize: none; outline: none; color: #1a1a1a; line-height: 1.5; }
+.modal textarea:focus { border-color: #9ca3af; }
+.modal-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+.btn-cancel { background: #f5f5f0; color: #6b7280; border: none; border-radius: 10px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.btn-save { background: #1a1a1a; color: white; border: none; border-radius: 10px; padding: 8px 18px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+.btn-save:hover { opacity: 0.8; }
+
+/* DELETE CONFIRM */
+.confirm-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
+.confirm-bg.open { display: flex; }
+.confirm { background: white; border-radius: 18px; padding: 22px 20px; width: 100%; max-width: 320px; text-align: center; }
+.confirm p { font-size: 15px; color: #374151; margin-bottom: 18px; line-height: 1.5; }
+.confirm-actions { display: flex; gap: 10px; justify-content: center; }
+.btn-keep { background: #f5f5f0; color: #6b7280; border: none; border-radius: 10px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.btn-del { background: #dc2626; color: white; border: none; border-radius: 10px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+.btn-del:hover { opacity: 0.85; }
+
+/* TOAST */
+#toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: white; padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 999; white-space: nowrap; }
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.empty { text-align: center; padding: 40px 20px; color: #c4c4bc; font-size: 14px; }
+.loading { text-align: center; padding: 40px; color: #9ca3af; font-size: 14px; }
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-title">Úkoly</div>
   <div class="login-sub">Kdo jsi?</div>
@@ -135,6 +165,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 </div>
 
+<!-- APP -->
 <div id="app">
   <div class="top-bar">
     <h1 id="tbTitle">Úkoly</h1>
@@ -148,9 +179,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="setTab('ukoly')">Úkoly</div>
-    <div class="tab" onclick="setTab('pripominky')">Připomínky</div>
-    <div class="tab" onclick="setTab('honorar')">Honorář</div>
+    <div class="tab active" onclick="setTab('ukoly')">Úkoly <span class="tab-count" id="cnt-ukoly">0</span></div>
+    <div class="tab" onclick="setTab('pripominky')">Připomínky <span class="tab-count" id="cnt-pripominky">0</span></div>
+    <div class="tab" onclick="setTab('honorar')">Honorář <span class="tab-count" id="cnt-honorar">0</span></div>
   </div>
 
   <div class="content">
@@ -173,6 +204,40 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 </div>
 
+<!-- EDIT MODAL -->
+<div class="modal-bg" id="editModal">
+  <div class="modal">
+    <h3>Upravit úkol</h3>
+    <textarea id="editText" rows="3"></textarea>
+    <div class="modal-row">
+      <span class="pro-label">Pro:</span>
+      <button class="ab radek" id="eab-radek" onclick="setEditAssignee('radek')">Radek</button>
+      <button class="ab vasek" id="eab-vasek" onclick="setEditAssignee('vasek')">Vašek</button>
+      <button class="ab karel" id="eab-karel" onclick="setEditAssignee('karel')">Karel</button>
+    </div>
+    <div class="modal-row">
+      <button class="date-btn" id="editDateBtn" onclick="openEditDate()">📅 <span id="editDateLabel">Datum splnění</span></button>
+      <input type="date" id="editDateInput" onchange="onEditDateChange(this.value)">
+      <button class="urgent-btn" id="editUrgentBtn" onclick="toggleEditUrgent()">🔴 <span id="editUrgentLabel">Urgentní</span></button>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeEdit()">Zrušit</button>
+      <button class="btn-save" onclick="saveEdit()">Uložit</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE CONFIRM -->
+<div class="confirm-bg" id="confirmModal">
+  <div class="confirm">
+    <p>Opravdu chcete smazat tento úkol?</p>
+    <div class="confirm-actions">
+      <button class="btn-keep" onclick="closeConfirm()">Ponechat</button>
+      <button class="btn-del" onclick="confirmDelete()">Smazat</button>
+    </div>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
@@ -184,12 +249,9 @@ const TABS = ['ukoly', 'pripominky', 'honorar'];
 const TLABELS = { ukoly: 'Úkoly', pripominky: 'Připomínky', honorar: 'Honorář' };
 const TPH = { ukoly: 'Nový úkol...', pripominky: 'Nová připomínka...', honorar: 'Nový honorář...' };
 
-let user = null;
-let tab = 'ukoly';
-let assignee = 'radek';
-let dueDate = null;
-let urgent = false;
-let tasks = [];
+let user = null, tab = 'ukoly', assignee = 'radek', dueDate = null, urgent = false, tasks = [];
+let editId = null, editAssignee = 'radek', editDueDate = null, editUrgent = false;
+let deleteId = null;
 
 function loginAs(u) {
   user = u;
@@ -220,9 +282,12 @@ function setTab(t) {
 
 function setAssignee(u) {
   assignee = u;
-  ['radek','vasek','karel'].forEach(x => {
-    document.getElementById('ab-'+x).classList.toggle('sel', x === u);
-  });
+  ['radek','vasek','karel'].forEach(x => document.getElementById('ab-'+x).classList.toggle('sel', x === u));
+}
+
+function setEditAssignee(u) {
+  editAssignee = u;
+  ['radek','vasek','karel'].forEach(x => document.getElementById('eab-'+x).classList.toggle('sel', x === u));
 }
 
 function openDate() {
@@ -232,22 +297,35 @@ function openDate() {
 
 function onDateChange(v) {
   dueDate = v || null;
-  const btn = document.getElementById('dateBtnShow');
   const lbl = document.getElementById('dateLabel');
-  if (v) {
-    const d = new Date(v + 'T00:00:00');
-    lbl.textContent = d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
-    btn.classList.add('has-date');
-  } else {
-    lbl.textContent = 'Datum splnění';
-    btn.classList.remove('has-date');
-  }
+  const btn = document.getElementById('dateBtnShow');
+  if (v) { lbl.textContent = fmtDateShort(v); btn.classList.add('has-date'); }
+  else { lbl.textContent = 'Datum splnění'; btn.classList.remove('has-date'); }
 }
 
 function toggleUrgent() {
   urgent = !urgent;
   document.getElementById('urgentBtn').classList.toggle('on', urgent);
   document.getElementById('urgentLabel').textContent = urgent ? 'Urgentní!' : 'Urgentní';
+}
+
+function openEditDate() {
+  const el = document.getElementById('editDateInput');
+  try { el.showPicker(); } catch(e) { el.click(); }
+}
+
+function onEditDateChange(v) {
+  editDueDate = v || null;
+  const lbl = document.getElementById('editDateLabel');
+  const btn = document.getElementById('editDateBtn');
+  if (v) { lbl.textContent = fmtDateShort(v); btn.classList.add('has-date'); }
+  else { lbl.textContent = 'Datum splnění'; btn.classList.remove('has-date'); }
+}
+
+function toggleEditUrgent() {
+  editUrgent = !editUrgent;
+  document.getElementById('editUrgentBtn').classList.toggle('on', editUrgent);
+  document.getElementById('editUrgentLabel').textContent = editUrgent ? 'Urgentní!' : 'Urgentní';
 }
 
 function handleKey(e) {
@@ -266,12 +344,8 @@ async function api(method, path, body) {
 }
 
 async function loadTasks() {
-  try {
-    tasks = await api('GET', 'ukoly?order=created_at.desc');
-    render();
-  } catch(e) {
-    document.getElementById('taskList').innerHTML = '<div class="empty">Chyba při načítání</div>';
-  }
+  try { tasks = await api('GET', 'ukoly?order=created_at.desc'); render(); }
+  catch(e) { document.getElementById('taskList').innerHTML = '<div class="empty">Chyba při načítání</div>'; }
 }
 
 async function addTask() {
@@ -290,8 +364,7 @@ async function addTask() {
     onDateChange('');
     document.getElementById('urgentBtn').classList.remove('on');
     document.getElementById('urgentLabel').textContent = 'Urgentní';
-    btn.classList.add('ok');
-    btn.textContent = '✓ Přidáno';
+    btn.classList.add('ok'); btn.textContent = '✓ Přidáno';
     setTimeout(() => { btn.classList.remove('ok'); btn.textContent = '+ Přidat'; }, 1500);
     toast('✓ Úkol byl přidán');
     render();
@@ -308,10 +381,60 @@ async function toggleDone(id) {
   catch(e) { t.hotovo = !t.hotovo; render(); }
 }
 
-async function delTask(id) {
+// EDIT
+function openEdit(id) {
+  const t = tasks.find(x => x.id === id);
+  if (!t) return;
+  editId = id;
+  editAssignee = t.pro || t.autor || 'radek';
+  editDueDate = t.due_date || null;
+  editUrgent = t.urgentni || false;
+  document.getElementById('editText').value = t.text;
+  setEditAssignee(editAssignee);
+  document.getElementById('editDateInput').value = editDueDate || '';
+  onEditDateChange(editDueDate || '');
+  document.getElementById('editUrgentBtn').classList.toggle('on', editUrgent);
+  document.getElementById('editUrgentLabel').textContent = editUrgent ? 'Urgentní!' : 'Urgentní';
+  document.getElementById('editModal').classList.add('open');
+}
+
+function closeEdit() {
+  document.getElementById('editModal').classList.remove('open');
+  editId = null;
+}
+
+async function saveEdit() {
+  const text = document.getElementById('editText').value.trim();
+  if (!text) return;
+  const payload = { text, pro: editAssignee, urgentni: editUrgent, due_date: editDueDate || null };
+  try {
+    await api('PATCH', 'ukoly?id=eq.' + editId, payload);
+    const t = tasks.find(x => x.id === editId);
+    if (t) { t.text = text; t.pro = editAssignee; t.urgentni = editUrgent; t.due_date = editDueDate; }
+    closeEdit();
+    toast('✓ Úkol upraven');
+    render();
+  } catch(e) { alert('Chyba: ' + e.message); }
+}
+
+// DELETE
+function askDelete(id) {
+  deleteId = id;
+  document.getElementById('confirmModal').classList.add('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.remove('open');
+  deleteId = null;
+}
+
+async function confirmDelete() {
+  if (!deleteId) return;
+  const id = deleteId;
+  closeConfirm();
   tasks = tasks.filter(x => x.id !== id);
   render();
-  try { await api('DELETE', 'ukoly?id=eq.' + id); }
+  try { await api('DELETE', 'ukoly?id=eq.' + id); toast('Úkol smazán'); }
   catch(e) { loadTasks(); }
 }
 
@@ -322,20 +445,34 @@ function toast(msg) {
   setTimeout(() => el.classList.remove('show'), 2200);
 }
 
+function fmtDateShort(s) {
+  if (!s) return '';
+  const d = new Date(s + 'T00:00:00');
+  return d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
+}
+
 function fmtDue(s) {
   if (!s) return null;
   const d = new Date(s + 'T00:00:00');
   const now = new Date(); now.setHours(0,0,0,0);
   const diff = Math.floor((d - now) / 86400000);
-  const lbl = d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
-  return { lbl: (diff < 0 ? 'Prošlé: ' : 'Do: ') + lbl, late: diff < 0 };
+  return { lbl: (diff < 0 ? 'Prošlé: ' : 'Do: ') + fmtDateShort(s), late: diff < 0 };
 }
 
 function esc(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+function updateCounts() {
+  TABS.forEach(t => {
+    const n = tasks.filter(x => x.kategorie === t && !x.hotovo).length;
+    const el = document.getElementById('cnt-' + t);
+    if (el) el.textContent = n;
+  });
+}
+
 function render() {
+  updateCounts();
   const filtered = tasks.filter(t => t.kategorie === tab);
   const active = filtered.filter(t => !t.hotovo);
   const done = filtered.filter(t => t.hotovo);
@@ -363,16 +500,17 @@ function cards(items) {
           <div class="pro-badge ${pro}"><div class="pro-dot"></div>${esc(proName)}</div>
         </div>
       </div>
-      <button class="del-btn" onclick="delTask(${t.id})">×</button>
+      <div class="card-actions">
+        <button class="action-btn" onclick="openEdit(${t.id})" title="Upravit">✏️</button>
+        <button class="action-btn del" onclick="askDelete(${t.id})" title="Smazat">🗑️</button>
+      </div>
     </div>`;
   }).join('');
 }
 
 window.onload = function() {
   const saved = localStorage.getItem('u');
-  if (saved && USERS[saved]) {
-    loginAs(saved);
-  }
+  if (saved && USERS[saved]) loginAs(saved);
 };
 setInterval(loadTasks, 30000);
 </script>
