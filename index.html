@@ -8,122 +8,278 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; min-height: 100vh; }
 
+  /* LOGIN */
+  #loginScreen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 32px 24px; background: #f5f5f0; }
+  .login-title { font-size: 32px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .login-sub { font-size: 15px; color: #9ca3af; margin-bottom: 48px; }
+  .login-users { display: flex; flex-direction: column; gap: 16px; width: 100%; max-width: 320px; }
+  .login-user-btn { display: flex; align-items: center; gap: 18px; padding: 20px 24px; border-radius: 24px; border: none; cursor: pointer; font-family: inherit; transition: transform 0.15s, box-shadow 0.15s; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+  .login-user-btn:active { transform: scale(0.97); }
+  .login-user-btn.radek { background: #2563eb; }
+  .login-user-btn.vasek { background: #16a34a; }
+  .login-user-btn.karel { background: #d97706; }
+  .login-avatar { width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.25); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; flex-shrink: 0; }
+  .login-name { font-size: 20px; font-weight: 600; color: white; text-align: left; }
+  .login-hint { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; text-align: left; }
+
+  /* APP */
+  #appScreen { display: none; }
   .top-bar { background: white; border-bottom: 1px solid #e8e8e4; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
   .top-bar h1 { font-size: 18px; font-weight: 600; color: #1a1a1a; }
-  .user-switcher { display: flex; gap: 6px; }
-  .user-btn { width: 32px; height: 32px; border-radius: 50%; border: 2px solid transparent; font-size: 11px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-  .user-btn.radek { background: #dbeafe; color: #1e40af; }
-  .user-btn.vasek { background: #dcfce7; color: #166534; }
-  .user-btn.karel { background: #fef3c7; color: #92400e; }
-  .user-btn.active { border-color: #374151; transform: scale(1.1); }
+  .top-bar-user { display: flex; align-items: center; gap: 8px; }
+  .top-bar-avatar { width: 30px; height: 30px; border-radius: 50%; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .top-bar-avatar.radek { background: #dbeafe; color: #1e40af; }
+  .top-bar-avatar.vasek { background: #dcfce7; color: #166534; }
+  .top-bar-avatar.karel { background: #fef3c7; color: #92400e; }
+  .top-bar-name { font-size: 13px; color: #6b7280; font-weight: 500; }
+  .switch-btn { font-size: 12px; color: #9ca3af; background: none; border: none; cursor: pointer; padding: 2px 0; font-family: inherit; text-decoration: underline; display: block; }
 
-  .tabs { display: flex; gap: 0; background: white; border-bottom: 1px solid #e8e8e4; padding: 0 16px; overflow-x: auto; }
-  .tab { padding: 12px 14px; font-size: 13px; font-weight: 500; color: #6b7280; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
+  .tabs { display: flex; background: white; border-bottom: 1px solid #e8e8e4; padding: 0 16px; }
+  .tab { padding: 12px 16px; font-size: 14px; font-weight: 500; color: #6b7280; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; transition: all 0.15s; }
   .tab.active { color: #1a1a1a; border-bottom-color: #1a1a1a; }
 
   .content { padding: 16px; max-width: 600px; margin: 0 auto; }
 
-  .add-form { background: white; border-radius: 12px; border: 1px solid #e8e8e4; padding: 14px; margin-bottom: 20px; }
-  .add-form textarea { width: 100%; border: none; outline: none; font-size: 14px; color: #1a1a1a; resize: none; font-family: inherit; line-height: 1.5; min-height: 44px; }
+  /* ADD FORM */
+  .add-form { background: white; border-radius: 14px; border: 1px solid #e8e8e4; padding: 14px; margin-bottom: 20px; }
+  .add-form textarea { width: 100%; border: none; outline: none; font-size: 14px; color: #1a1a1a; resize: none; font-family: inherit; line-height: 1.5; min-height: 44px; background: transparent; }
   .add-form textarea::placeholder { color: #9ca3af; }
-  .add-form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 8px; flex-wrap: wrap; }
-  .kat-select { font-size: 13px; border: 1px solid #e8e8e4; border-radius: 8px; padding: 6px 10px; color: #374151; background: #f9f9f7; outline: none; font-family: inherit; }
-  .add-btn { background: #1a1a1a; color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
-  .add-btn:hover { opacity: 0.8; }
+
+  .form-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .pro-label { font-size: 13px; font-weight: 500; color: #6b7280; white-space: nowrap; margin-right: 2px; }
+  .form-actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 10px; }
+  .assignee-btn { padding: 5px 11px; border-radius: 999px; border: 1.5px solid transparent; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; opacity: 0.4; white-space: nowrap; }
+  .assignee-btn.radek { background: #dbeafe; color: #1e40af; }
+  .assignee-btn.vasek { background: #dcfce7; color: #166534; }
+  .assignee-btn.karel { background: #fef3c7; color: #92400e; }
+  .assignee-btn.selected { opacity: 1; border-color: currentColor; }
+
+  .date-btn { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #e8e8e4; background: #f9f9f7; font-size: 12px; color: #6b7280; cursor: pointer; font-family: inherit; white-space: nowrap; }
+  .date-btn.has-date { color: #374151; border-color: #d1d5db; background: white; }
+  input[type="date"]#dateInput { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; }
+
+  .urgent-btn { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 8px; border: 1px solid #e8e8e4; background: #f9f9f7; font-size: 12px; color: #6b7280; cursor: pointer; font-family: inherit; white-space: nowrap; transition: all 0.15s; }
+  .urgent-btn.on { background: #fef2f2; border-color: #fca5a5; color: #dc2626; font-weight: 600; }
+
+  .form-actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 10px; }
+  .add-btn { background: #1a1a1a; color: white; border: none; border-radius: 10px; padding: 8px 20px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: transform 0.12s, background 0.2s, opacity 0.15s; }
+  .add-btn:hover { opacity: 0.85; }
+  .add-btn:active { transform: scale(0.95); }
+  .add-btn.success { background: #16a34a; }
   .add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  .section { margin-bottom: 20px; }
+  /* TOAST */
+  #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: white; padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 999; white-space: nowrap; }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* TASK CARDS */
+  .section { margin-bottom: 24px; }
   .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; }
   .section-count { font-size: 11px; background: #f0f0ec; color: #6b7280; padding: 1px 7px; border-radius: 999px; font-weight: 500; }
 
-  .task-card { background: white; border: 1px solid #e8e8e4; border-radius: 10px; padding: 12px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 10px; transition: opacity 0.2s; }
-  .task-card.done { opacity: 0.5; }
-  .cb { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #d1d5db; flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .task-card { background: white; border: 1.5px solid #e8e8e4; border-radius: 14px; padding: 13px 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; transition: all 0.2s; position: relative; }
+  .task-card.done { opacity: 0.45; }
+  .task-card.urgent { background: #fff5f5; border-color: #fca5a5; }
+  .task-card.urgent.done { opacity: 0.4; }
+
+  .cb { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #d1d5db; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
   .cb:hover { border-color: #6b7280; }
   .cb.checked { background: #16a34a; border-color: #16a34a; }
   .cb.checked::after { content: ''; display: block; width: 5px; height: 9px; border: 2px solid white; border-top: none; border-left: none; transform: rotate(45deg) translate(-1px, -1px); }
+
   .task-body { flex: 1; min-width: 0; }
   .task-text { font-size: 14px; color: #1a1a1a; line-height: 1.5; word-break: break-word; }
   .task-card.done .task-text { text-decoration: line-through; color: #9ca3af; }
-  .task-meta { display: flex; align-items: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
-  .av { width: 16px; height: 16px; border-radius: 50%; font-size: 8px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .av.radek { background: #dbeafe; color: #1e40af; }
-  .av.vasek { background: #dcfce7; color: #166534; }
-  .av.karel { background: #fef3c7; color: #92400e; }
-  .task-author { font-size: 12px; color: #9ca3af; }
-  .task-date { font-size: 12px; color: #c4c4bc; margin-left: auto; }
-  .del-btn { opacity: 0; background: none; border: none; color: #d1d5db; cursor: pointer; font-size: 16px; padding: 0 2px; flex-shrink: 0; transition: opacity 0.15s, color 0.15s; line-height: 1; }
+
+  .task-footer { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 8px; gap: 8px; }
+  .task-footer-left { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+  .due-tag { font-size: 11px; color: #6b7280; background: #f5f5f0; padding: 2px 8px; border-radius: 6px; }
+  .due-tag.overdue { color: #dc2626; background: #fef2f2; font-weight: 600; }
+  .urgent-tag { font-size: 11px; color: #dc2626; background: #fef2f2; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+
+  /* BIG ASSIGNEE BADGE bottom right */
+  .pro-badge { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+  .pro-badge.radek { background: #dbeafe; color: #1e40af; }
+  .pro-badge.vasek { background: #dcfce7; color: #166534; }
+  .pro-badge.karel { background: #fef3c7; color: #92400e; }
+  .pro-badge-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .pro-badge.radek .pro-badge-dot { background: #2563eb; }
+  .pro-badge.vasek .pro-badge-dot { background: #16a34a; }
+  .pro-badge.karel .pro-badge-dot { background: #d97706; }
+
+  .del-btn { opacity: 0; background: none; border: none; color: #d1d5db; cursor: pointer; font-size: 18px; padding: 0 2px; flex-shrink: 0; transition: opacity 0.15s, color 0.15s; line-height: 1; margin-top: 1px; }
   .task-card:hover .del-btn { opacity: 1; }
   .del-btn:hover { color: #ef4444; }
 
-  .empty { text-align: center; padding: 40px 20px; color: #9ca3af; font-size: 14px; }
+  .empty { text-align: center; padding: 40px 20px; color: #c4c4bc; font-size: 14px; }
   .loading { text-align: center; padding: 40px; color: #9ca3af; font-size: 14px; }
 
-  .kat-badge { font-size: 11px; padding: 1px 7px; border-radius: 999px; font-weight: 500; }
-  .kat-badge.aktualni { background: #fff7ed; color: #c2410c; }
-  .kat-badge.dulezite { background: #fef2f2; color: #b91c1c; }
-  .kat-badge.dlouhodoby { background: #eff6ff; color: #1d4ed8; }
-
   @media (max-width: 480px) {
-    .top-bar h1 { font-size: 16px; }
     .content { padding: 12px; }
+    .del-btn { opacity: 1; }
+    .form-row { gap: 6px; }
   }
 </style>
 </head>
 <body>
 
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-title">Úkoly</div>
+  <div class="login-sub">Kdo jsi?</div>
+  <div class="login-users">
+    <button class="login-user-btn radek" onclick="loginAs('radek')">
+      <div class="login-avatar">R</div>
+      <div><div class="login-name">Radek</div><div class="login-hint">táta</div></div>
+    </button>
+    <button class="login-user-btn vasek" onclick="loginAs('vasek')">
+      <div class="login-avatar">V</div>
+      <div><div class="login-name">Vašek</div></div>
+    </button>
+    <button class="login-user-btn karel" onclick="loginAs('karel')">
+      <div class="login-avatar">K</div>
+      <div><div class="login-name">Karel</div></div>
+    </button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appScreen">
+
 <div class="top-bar">
-  <h1>Úkoly</h1>
-  <div class="user-switcher">
-    <button class="user-btn radek active" onclick="setUser('radek')" title="Radek">R</button>
-    <button class="user-btn vasek" onclick="setUser('vasek')" title="Vašek">V</button>
-    <button class="user-btn karel" onclick="setUser('karel')" title="Karel">K</button>
+  <h1 id="topBarTitle">Úkoly</h1>
+  <div class="top-bar-user">
+    <div class="top-bar-avatar" id="topBarAvatar"></div>
+    <div>
+      <div class="top-bar-name" id="topBarName"></div>
+      <button class="switch-btn" onclick="switchUser()">změnit</button>
+    </div>
   </div>
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="setTab('vse')">Vše</div>
-  <div class="tab" onclick="setTab('aktualni')">Aktuální</div>
-  <div class="tab" onclick="setTab('dulezite')">Důležité</div>
-  <div class="tab" onclick="setTab('dlouhodoby')">Dlouhodobé</div>
+  <div class="tab active" onclick="setTab('ukoly')">Úkoly</div>
+  <div class="tab" onclick="setTab('pripominky')">Připomínky</div>
+  <div class="tab" onclick="setTab('honorar')">Honorář</div>
 </div>
 
 <div class="content">
   <div class="add-form">
-    <textarea id="newTask" placeholder="Přidat nový úkol..." rows="2" onkeydown="handleKey(event)"></textarea>
-    <div class="add-form-footer">
-      <select class="kat-select" id="newKat">
-        <option value="aktualni">Aktuální</option>
-        <option value="dulezite">Důležité</option>
-        <option value="dlouhodoby">Dlouhodobé</option>
-      </select>
+    <textarea id="newTask" placeholder="Nový úkol..." rows="2" onkeydown="handleKey(event)"></textarea>
+
+    <div class="form-row">
+      <span class="pro-label">Úkol pro:</span>
+      <div class="assignee-picker">
+        <button class="assignee-btn radek selected" id="ab-radek" onclick="setAssignee('radek')">Radek</button>
+        <button class="assignee-btn vasek" id="ab-vasek" onclick="setAssignee('vasek')">Vašek</button>
+        <button class="assignee-btn karel" id="ab-karel" onclick="setAssignee('karel')">Karel</button>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <button class="date-btn" id="dateBtnShow" onclick="document.getElementById('dateInput').showPicker ? document.getElementById('dateInput').showPicker() : document.getElementById('dateInput').click()">
+        <span>📅</span><span id="dateBtnLabel">Datum splnění</span>
+      </button>
+      <input type="date" id="dateInput" onchange="onDateChange(this.value)">
+      <button class="urgent-btn" id="urgentBtn" onclick="toggleUrgent()">
+        <span>🔴</span><span id="urgentLabel">Urgentní</span>
+      </button>
+      <div style="flex:1"></div>
       <button class="add-btn" id="addBtn" onclick="addTask()">+ Přidat</button>
     </div>
   </div>
-  <div id="taskList"><div class="loading">Načítám úkoly...</div></div>
+
+  <div id="taskList"><div class="loading">Načítám...</div></div>
 </div>
 
-<script>
+</div>
+
+<div id="toast">✓ Úkol přidán</div>
 const SUPABASE_URL = 'https://rcnwldvkhwcygetpeccd.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_NDI_ONvoikguaj7fTfdn_w_8G51cWrK';
 
-let currentUser = localStorage.getItem('ukoly_user') || 'radek';
-let currentTab = 'vse';
+let currentUser = localStorage.getItem('ukoly_user') || null;
+let currentTab = 'ukoly';
+let newAssignee = 'radek';
+let newDueDate = null;
+let newUrgent = false;
 let tasks = [];
 
-function setUser(u) {
+const USERS = {
+  radek: { label: 'Radek', initial: 'R' },
+  vasek: { label: 'Vašek', initial: 'V' },
+  karel: { label: 'Karel', initial: 'K' }
+};
+const TABS = ['ukoly', 'pripominky', 'honorar'];
+const TAB_LABELS = { ukoly: 'Úkoly', pripominky: 'Připomínky', honorar: 'Honorář' };
+const TAB_PH = { ukoly: 'Nový úkol...', pripominky: 'Nová připomínka...', honorar: 'Nový honorář...' };
+
+function loginAs(u) {
   currentUser = u;
   localStorage.setItem('ukoly_user', u);
-  document.querySelectorAll('.user-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('.user-btn.' + u).classList.add('active');
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appScreen').style.display = 'block';
+  updateTopBar();
+  setAssignee(u);
+  loadTasks();
+}
+
+function switchUser() {
+  localStorage.removeItem('ukoly_user');
+  currentUser = null;
+  document.getElementById('appScreen').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+}
+
+function updateTopBar() {
+  const av = document.getElementById('topBarAvatar');
+  av.textContent = USERS[currentUser].initial;
+  av.className = 'top-bar-avatar ' + currentUser;
+  document.getElementById('topBarName').textContent = USERS[currentUser].label;
+  document.getElementById('topBarTitle').textContent = TAB_LABELS[currentTab];
 }
 
 function setTab(t) {
   currentTab = t;
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab')[['vse','aktualni','dulezite','dlouhodoby'].indexOf(t)].classList.add('active');
+  document.querySelectorAll('.tab').forEach((b, i) => b.classList.toggle('active', TABS[i] === t));
+  document.getElementById('topBarTitle').textContent = TAB_LABELS[t];
+  document.getElementById('newTask').placeholder = TAB_PH[t];
   render();
+}
+
+function setAssignee(u) {
+  newAssignee = u;
+  document.querySelectorAll('.assignee-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('ab-' + u).classList.add('selected');
+}
+
+function onDateChange(val) {
+  newDueDate = val || null;
+  const btn = document.getElementById('dateBtnShow');
+  const label = document.getElementById('dateBtnLabel');
+  if (val) {
+    const d = new Date(val + 'T00:00:00');
+    label.textContent = d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
+    btn.classList.add('has-date');
+  } else {
+    label.textContent = 'Datum splnění';
+    btn.classList.remove('has-date');
+  }
+}
+
+function toggleUrgent() {
+  newUrgent = !newUrgent;
+  const btn = document.getElementById('urgentBtn');
+  const label = document.getElementById('urgentLabel');
+  if (newUrgent) {
+    btn.classList.add('on');
+    label.textContent = 'Urgentní!';
+  } else {
+    btn.classList.remove('on');
+    label.textContent = 'Urgentní';
+  }
 }
 
 function handleKey(e) {
@@ -151,20 +307,42 @@ async function loadTasks() {
     tasks = await api('GET', 'ukoly?order=created_at.desc');
     render();
   } catch(e) {
-    document.getElementById('taskList').innerHTML = '<div class="empty">Chyba při načítání: ' + e.message + '</div>';
+    document.getElementById('taskList').innerHTML = '<div class="empty">Chyba při načítání</div>';
   }
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
 }
 
 async function addTask() {
   const text = document.getElementById('newTask').value.trim();
   if (!text) return;
-  const kat = document.getElementById('newKat').value;
   const btn = document.getElementById('addBtn');
   btn.disabled = true;
   try {
-    const [newTask] = await api('POST', 'ukoly', { text, kategorie: kat, autor: currentUser });
+    const payload = { text, kategorie: currentTab, autor: currentUser, pro: newAssignee, urgentni: newUrgent };
+    if (newDueDate) payload.due_date = newDueDate;
+    const [newTask] = await api('POST', 'ukoly', payload);
     tasks.unshift(newTask);
     document.getElementById('newTask').value = '';
+    newDueDate = null;
+    newUrgent = false;
+    document.getElementById('dateInput').value = '';
+    onDateChange('');
+    document.getElementById('urgentBtn').classList.remove('on');
+    document.getElementById('urgentLabel').textContent = 'Urgentní';
+    // button success animation
+    btn.classList.add('success');
+    btn.textContent = '✓ Přidáno';
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.textContent = '+ Přidat';
+    }, 1400);
+    showToast('✓ Úkol byl přidán');
     render();
   } catch(e) { alert('Chyba: ' + e.message); }
   btn.disabled = false;
@@ -198,74 +376,70 @@ function formatDate(iso) {
   return d.getDate() + '. ' + (d.getMonth()+1) + '.';
 }
 
-function authorLabel(a) {
-  if (a === 'radek') return 'Radek';
-  if (a === 'vasek') return 'Vašek';
-  return 'Karel';
+function formatDue(dateStr) {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + 'T00:00:00');
+  const now = new Date(); now.setHours(0,0,0,0);
+  const diff = Math.floor((d - now) / 86400000);
+  const label = d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
+  const overdue = diff < 0;
+  return { label: overdue ? 'Prošlé: ' + label : 'Do: ' + label, overdue };
 }
 
-const katLabels = { aktualni: 'Aktuální', dulezite: 'Důležité', dlouhodoby: 'Dlouhodobé' };
-
 function render() {
-  const filtered = currentTab === 'vse' ? tasks : tasks.filter(t => t.kategorie === currentTab);
+  const filtered = tasks.filter(t => t.kategorie === currentTab);
   const active = filtered.filter(t => !t.hotovo);
   const done = filtered.filter(t => t.hotovo);
 
   if (filtered.length === 0) {
-    document.getElementById('taskList').innerHTML = '<div class="empty">Žádné úkoly</div>';
+    document.getElementById('taskList').innerHTML = '<div class="empty">Zatím nic</div>';
     return;
   }
 
   let html = '';
-
-  if (currentTab === 'vse') {
-    const kats = ['aktualni', 'dulezite', 'dlouhodoby'];
-    for (const k of kats) {
-      const items = active.filter(t => t.kategorie === k);
-      if (!items.length) continue;
-      html += section(katLabels[k], items, false);
-    }
-    if (done.length) html += section('Hotovo', done, true);
-  } else {
-    if (active.length) html += renderCards(active, false);
-    if (done.length) {
-      html += '<div class="section"><div class="section-header"><span class="section-title">Hotovo</span><span class="section-count">' + done.length + '</span></div>';
-      html += renderCards(done, true) + '</div>';
-    }
+  if (active.length) html += renderCards(active);
+  if (done.length) {
+    html += '<div class="section"><div class="section-header"><span class="section-title">Hotovo</span><span class="section-count">' + done.length + '</span></div>' + renderCards(done) + '</div>';
   }
-
   document.getElementById('taskList').innerHTML = html;
 }
 
-function section(label, items, isDone) {
-  return '<div class="section"><div class="section-header"><span class="section-title">' + label + '</span><span class="section-count">' + items.length + '</span></div>' + renderCards(items, isDone) + '</div>';
-}
+function renderCards(items) {
+  return items.map(t => {
+    const pro = t.pro || t.autor;
+    const proLabel = USERS[pro] ? USERS[pro].label : pro;
+    const urgent = t.urgentni;
+    const due = formatDue(t.due_date);
 
-function renderCards(items, isDone) {
-  return items.map(t => `
-    <div class="task-card ${t.hotovo ? 'done' : ''}">
+    const leftTags = [
+      due ? `<span class="due-tag ${due.overdue ? 'overdue' : ''}">${escHtml(due.label)}</span>` : '',
+      urgent && !t.hotovo ? `<span class="urgent-tag">🔴 Urgentní</span>` : ''
+    ].filter(Boolean).join('');
+
+    return `<div class="task-card ${t.hotovo ? 'done' : ''} ${urgent && !t.hotovo ? 'urgent' : ''}">
       <div class="cb ${t.hotovo ? 'checked' : ''}" onclick="toggleDone(${t.id})"></div>
       <div class="task-body">
         <div class="task-text">${escHtml(t.text)}</div>
-        <div class="task-meta">
-          <div class="av ${t.autor}">${authorLabel(t.autor)[0]}</div>
-          <span class="task-author">${authorLabel(t.autor)}</span>
-          ${currentTab === 'vse' && !t.hotovo ? '' : ''}
-          <span class="task-date">${formatDate(t.created_at)}</span>
+        <div class="task-footer">
+          <div class="task-footer-left">${leftTags}</div>
+          <div class="pro-badge ${pro}">
+            <div class="pro-badge-dot"></div>
+            ${escHtml(proLabel)}
+          </div>
         </div>
       </div>
       <button class="del-btn" onclick="deleteTask(${t.id})" title="Smazat">×</button>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// Init
-setUser(currentUser);
-loadTasks();
+window.addEventListener('DOMContentLoaded', () => {
+  if (currentUser) loginAs(currentUser);
+});
 setInterval(loadTasks, 30000);
 </script>
 </body>
