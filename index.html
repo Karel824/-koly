@@ -23,7 +23,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 /* APP */
 #app { display: none; }
-
 .top-bar { background: white; border-bottom: 1px solid #e8e8e4; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
 .top-bar h1 { font-size: 18px; font-weight: 600; color: #1a1a1a; }
 .top-bar-user { display: flex; align-items: center; gap: 8px; }
@@ -42,7 +41,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 .content { padding: 16px; max-width: 600px; margin: 0 auto; }
 
-/* ADD FORM */
+/* ADD FORM - TASKS */
 .add-form { background: white; border-radius: 14px; border: 1px solid #e8e8e4; padding: 14px; margin-bottom: 20px; }
 .add-form textarea { width: 100%; border: none; outline: none; font-size: 14px; color: #1a1a1a; resize: none; font-family: inherit; line-height: 1.5; min-height: 48px; background: transparent; }
 .add-form textarea::placeholder { color: #9ca3af; }
@@ -67,7 +66,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .add-btn.ok { background: #16a34a; }
 .add-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* CARDS */
+/* ADD FORM - REMINDERS */
+.rem-form { background: white; border-radius: 14px; border: 1px solid #e8e8e4; padding: 14px; margin-bottom: 20px; }
+.rem-form input[type="text"] { width: 100%; border: none; outline: none; font-size: 14px; color: #1a1a1a; font-family: inherit; line-height: 1.5; padding: 6px 0; background: transparent; }
+.rem-form input[type="text"]::placeholder { color: #9ca3af; }
+.rem-form-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.rem-date { padding: 6px 10px; border-radius: 8px; border: 1px solid #e8e8e4; background: #f9f9f7; font-size: 13px; color: #374151; font-family: inherit; outline: none; cursor: pointer; }
+.rem-time { padding: 6px 10px; border-radius: 8px; border: 1px solid #e8e8e4; background: #f9f9f7; font-size: 13px; color: #374151; font-family: inherit; outline: none; width: 110px; }
+
+/* TASK CARDS */
 .sec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; margin-top: 4px; }
 .sec-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #9ca3af; }
 .sec-count { font-size: 11px; background: #f0f0ec; color: #6b7280; padding: 1px 7px; border-radius: 999px; }
@@ -75,6 +82,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .card { background: white; border: 1.5px solid #e8e8e4; border-radius: 14px; padding: 13px 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; transition: opacity 0.2s; }
 .card.done { opacity: 0.45; }
 .card.urgent { background: #fff5f5; border-color: #fca5a5; }
+.card.past { opacity: 0.5; }
 
 .cb { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid #d1d5db; flex-shrink: 0; margin-top: 2px; cursor: pointer; transition: all 0.15s; position: relative; }
 .cb:hover { border-color: #6b7280; }
@@ -84,13 +92,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .card-body { flex: 1; min-width: 0; }
 .card-text { font-size: 14px; color: #1a1a1a; line-height: 1.5; word-break: break-word; }
 .card.done .card-text { text-decoration: line-through; color: #9ca3af; }
-
 .card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; gap: 8px; }
 .card-tags { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
 .due-tag { font-size: 11px; color: #6b7280; background: #f5f5f0; padding: 2px 8px; border-radius: 6px; }
 .due-tag.late { color: #dc2626; background: #fef2f2; font-weight: 600; }
 .urg-tag { font-size: 11px; color: #dc2626; background: #fef2f2; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
-
 .pro-badge { display: flex; align-items: center; gap: 5px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; white-space: nowrap; flex-shrink: 0; }
 .pro-badge.radek { background: #dbeafe; color: #1e40af; }
 .pro-badge.vasek { background: #dcfce7; color: #166534; }
@@ -100,9 +106,21 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .pro-badge.vasek .pro-dot { background: #16a34a; }
 .pro-badge.karel .pro-dot { background: #d97706; }
 
-/* ACTION BUTTONS */
-.card-actions { display: flex; gap: 4px; flex-shrink: 0; opacity: 0; transition: opacity 0.15s; margin-top: 1px; }
-.card:hover .card-actions { opacity: 1; }
+/* REMINDER CARD */
+.rem-card { background: white; border: 1.5px solid #e8e8e4; border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; gap: 14px; transition: opacity 0.2s; }
+.rem-card.past { border-color: #e8e8e4; background: #fafafa; }
+.rem-date-block { display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 48px; background: #f0f0ec; border-radius: 10px; padding: 6px 10px; flex-shrink: 0; }
+.rem-card.past .rem-date-block { background: #f5f5f0; }
+.rem-day { font-size: 22px; font-weight: 700; color: #1a1a1a; line-height: 1; }
+.rem-month { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+.rem-body { flex: 1; min-width: 0; }
+.rem-title { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+.rem-card.past .rem-title { color: #9ca3af; }
+.rem-time-tag { font-size: 12px; color: #6b7280; margin-top: 3px; }
+.rem-past-tag { font-size: 11px; color: #9ca3af; background: #f0f0ec; padding: 2px 8px; border-radius: 6px; margin-top: 4px; display: inline-block; }
+
+.card-actions { display: flex; gap: 4px; flex-shrink: 0; opacity: 0; transition: opacity 0.15s; }
+.card:hover .card-actions, .rem-card:hover .card-actions { opacity: 1; }
 .action-btn { background: none; border: 1px solid #e8e8e4; border-radius: 7px; color: #9ca3af; cursor: pointer; font-size: 13px; padding: 3px 7px; line-height: 1.4; transition: all 0.15s; font-family: inherit; }
 .action-btn:hover { border-color: #d1d5db; color: #374151; background: #f9f9f7; }
 .action-btn.del:hover { border-color: #fca5a5; color: #dc2626; background: #fef2f2; }
@@ -117,13 +135,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .modal-bg.open { display: flex; }
 .modal { background: white; border-radius: 18px; padding: 20px; width: 100%; max-width: 440px; }
 .modal h3 { font-size: 16px; font-weight: 600; margin-bottom: 14px; color: #1a1a1a; }
-.modal textarea { width: 100%; border: 1px solid #e8e8e4; border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; resize: none; outline: none; color: #1a1a1a; line-height: 1.5; }
-.modal textarea:focus { border-color: #9ca3af; }
+.modal textarea, .modal input[type="text"] { width: 100%; border: 1px solid #e8e8e4; border-radius: 10px; padding: 10px 12px; font-size: 14px; font-family: inherit; resize: none; outline: none; color: #1a1a1a; line-height: 1.5; }
+.modal textarea:focus, .modal input[type="text"]:focus { border-color: #9ca3af; }
 .modal-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
 .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
 .btn-cancel { background: #f5f5f0; color: #6b7280; border: none; border-radius: 10px; padding: 8px 16px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
-.btn-save { background: #1a1a1a; color: white; border: none; border-radius: 10px; padding: 8px 18px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
-.btn-save:hover { opacity: 0.8; }
+.btn-save { background: #1a1a1a; color: white; border: none; border-radius: 10px; padding: 8px 18px; font-size: 13px; font-weight: 500; cursor: pointer; font-family: inherit; }
+.btn-save:hover { opacity: 0.85; }
 
 /* DELETE CONFIRM */
 .confirm-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
@@ -132,13 +150,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .confirm p { font-size: 15px; color: #374151; margin-bottom: 18px; line-height: 1.5; }
 .confirm-actions { display: flex; gap: 10px; justify-content: center; }
 .btn-keep { background: #f5f5f0; color: #6b7280; border: none; border-radius: 10px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; }
-.btn-del { background: #dc2626; color: white; border: none; border-radius: 10px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+.btn-del { background: #dc2626; color: white; border: none; border-radius: 10px; padding: 9px 20px; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; }
 .btn-del:hover { opacity: 0.85; }
 
-/* TOAST */
 #toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(20px); background: #1a1a1a; color: white; padding: 10px 20px; border-radius: 999px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s; z-index: 999; white-space: nowrap; }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
 .empty { text-align: center; padding: 40px 20px; color: #c4c4bc; font-size: 14px; }
 .loading { text-align: center; padding: 40px; color: #9ca3af; font-size: 14px; }
 </style>
@@ -150,18 +166,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   <div class="login-title">Úkoly</div>
   <div class="login-sub">Kdo jsi?</div>
   <div class="login-users">
-    <button class="login-user-btn radek" onclick="loginAs('radek')">
-      <div class="login-av">R</div>
-      <div class="login-name">Radek</div>
-    </button>
-    <button class="login-user-btn vasek" onclick="loginAs('vasek')">
-      <div class="login-av">V</div>
-      <div class="login-name">Vašek</div>
-    </button>
-    <button class="login-user-btn karel" onclick="loginAs('karel')">
-      <div class="login-av">K</div>
-      <div class="login-name">Karel</div>
-    </button>
+    <button class="login-user-btn radek" onclick="loginAs('radek')"><div class="login-av">R</div><div class="login-name">Radek</div></button>
+    <button class="login-user-btn vasek" onclick="loginAs('vasek')"><div class="login-av">V</div><div class="login-name">Vašek</div></button>
+    <button class="login-user-btn karel" onclick="loginAs('karel')"><div class="login-av">K</div><div class="login-name">Karel</div></button>
   </div>
 </div>
 
@@ -185,26 +192,42 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 
   <div class="content">
-    <div class="add-form">
-      <textarea id="newTask" placeholder="Nový úkol..." rows="2" onkeydown="handleKey(event)"></textarea>
-      <div class="form-row">
-        <span class="pro-label">Úkol pro:</span>
-        <button class="ab radek sel" id="ab-radek" onclick="setAssignee('radek')">Radek</button>
-        <button class="ab vasek" id="ab-vasek" onclick="setAssignee('vasek')">Vašek</button>
-        <button class="ab karel" id="ab-karel" onclick="setAssignee('karel')">Karel</button>
-      </div>
-      <div class="form-row">
-        <button class="date-btn" id="dateBtnShow" onclick="openDate()">📅 <span id="dateLabel">Datum splnění</span></button>
-        <input type="date" id="dateInput" onchange="onDateChange(this.value)">
-        <button class="urgent-btn" id="urgentBtn" onclick="toggleUrgent()">🔴 <span id="urgentLabel">Urgentní</span></button>
-        <button class="add-btn" id="addBtn" onclick="addTask()">+ Přidat</button>
+    <!-- TASK FORM -->
+    <div id="taskForm">
+      <div class="add-form">
+        <textarea id="newTask" placeholder="Nový úkol..." rows="2" onkeydown="handleKey(event)"></textarea>
+        <div class="form-row">
+          <span class="pro-label">Úkol pro:</span>
+          <button class="ab radek sel" id="ab-radek" onclick="setAssignee('radek')">Radek</button>
+          <button class="ab vasek" id="ab-vasek" onclick="setAssignee('vasek')">Vašek</button>
+          <button class="ab karel" id="ab-karel" onclick="setAssignee('karel')">Karel</button>
+        </div>
+        <div class="form-row">
+          <button class="date-btn" id="dateBtnShow" onclick="openDate()">📅 <span id="dateLabel">Datum splnění</span></button>
+          <input type="date" id="dateInput" onchange="onDateChange(this.value)">
+          <button class="urgent-btn" id="urgentBtn" onclick="toggleUrgent()">🔴 <span id="urgentLabel">Urgentní</span></button>
+          <button class="add-btn" id="addBtn" onclick="addTask()">+ Přidat</button>
+        </div>
       </div>
     </div>
+
+    <!-- REMINDER FORM -->
+    <div id="remForm" style="display:none">
+      <div class="rem-form">
+        <input type="text" id="newRem" placeholder="Název připomínky..." onkeydown="handleRemKey(event)">
+        <div class="rem-form-row">
+          <input type="date" class="rem-date" id="remDate">
+          <input type="time" class="rem-time" id="remTime" placeholder="Čas (nepovinný)">
+          <button class="add-btn" id="addRemBtn" onclick="addReminder()">+ Přidat</button>
+        </div>
+      </div>
+    </div>
+
     <div id="taskList"><div class="loading">Načítám...</div></div>
   </div>
 </div>
 
-<!-- EDIT MODAL -->
+<!-- EDIT TASK MODAL -->
 <div class="modal-bg" id="editModal">
   <div class="modal">
     <h3>Upravit úkol</h3>
@@ -227,10 +250,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
   </div>
 </div>
 
+<!-- EDIT REMINDER MODAL -->
+<div class="modal-bg" id="editRemModal">
+  <div class="modal">
+    <h3>Upravit připomínku</h3>
+    <input type="text" id="editRemText">
+    <div class="modal-row">
+      <input type="date" class="rem-date" id="editRemDate">
+      <input type="time" class="rem-time" id="editRemTime">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeEditRem()">Zrušit</button>
+      <button class="btn-save" onclick="saveEditRem()">Uložit</button>
+    </div>
+  </div>
+</div>
+
 <!-- DELETE CONFIRM -->
 <div class="confirm-bg" id="confirmModal">
   <div class="confirm">
-    <p>Opravdu chcete smazat tento úkol?</p>
+    <p>Opravdu chcete smazat tuto položku?</p>
     <div class="confirm-actions">
       <button class="btn-keep" onclick="closeConfirm()">Ponechat</button>
       <button class="btn-del" onclick="confirmDelete()">Smazat</button>
@@ -241,17 +280,16 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 <div id="toast"></div>
 
 <script>
-const URL = 'https://rcnwldvkhwcygetpeccd.supabase.co';
+const SURL = 'https://rcnwldvkhwcygetpeccd.supabase.co';
 const KEY = 'sb_publishable_NDI_ONvoikguaj7fTfdn_w_8G51cWrK';
-
 const USERS = { radek: 'Radek', vasek: 'Vašek', karel: 'Karel' };
 const TABS = ['ukoly', 'pripominky', 'honorar'];
 const TLABELS = { ukoly: 'Úkoly', pripominky: 'Připomínky', honorar: 'Honorář' };
-const TPH = { ukoly: 'Nový úkol...', pripominky: 'Nová připomínka...', honorar: 'Nový honorář...' };
+const MONTHS = ['led','úno','bře','dub','kvě','čvn','čvc','srp','zář','říj','lis','pro'];
 
-let user = null, tab = 'ukoly', assignee = 'radek', dueDate = null, urgent = false, tasks = [];
-let editId = null, editAssignee = 'radek', editDueDate = null, editUrgent = false;
-let deleteId = null;
+let user=null, tab='ukoly', assignee='radek', dueDate=null, urgent=false, tasks=[];
+let editId=null, editAssignee='radek', editDueDate=null, editUrgent=false;
+let editRemId=null, deleteId=null;
 
 function loginAs(u) {
   user = u;
@@ -274,245 +312,284 @@ function switchUser() {
 
 function setTab(t) {
   tab = t;
-  TABS.forEach((v, i) => document.querySelectorAll('.tab')[i].classList.toggle('active', v === t));
+  TABS.forEach((v,i) => document.querySelectorAll('.tab')[i].classList.toggle('active', v===t));
   document.getElementById('tbTitle').textContent = TLABELS[t];
-  document.getElementById('newTask').placeholder = TPH[t];
+  document.getElementById('taskForm').style.display = t !== 'pripominky' ? 'block' : 'none';
+  document.getElementById('remForm').style.display = t === 'pripominky' ? 'block' : 'none';
   render();
 }
 
 function setAssignee(u) {
   assignee = u;
-  ['radek','vasek','karel'].forEach(x => document.getElementById('ab-'+x).classList.toggle('sel', x === u));
+  ['radek','vasek','karel'].forEach(x => document.getElementById('ab-'+x).classList.toggle('sel', x===u));
 }
-
 function setEditAssignee(u) {
   editAssignee = u;
-  ['radek','vasek','karel'].forEach(x => document.getElementById('eab-'+x).classList.toggle('sel', x === u));
+  ['radek','vasek','karel'].forEach(x => document.getElementById('eab-'+x).classList.toggle('sel', x===u));
 }
 
-function openDate() {
-  const el = document.getElementById('dateInput');
-  try { el.showPicker(); } catch(e) { el.click(); }
-}
-
+function openDate() { const el=document.getElementById('dateInput'); try{el.showPicker();}catch(e){el.click();} }
 function onDateChange(v) {
-  dueDate = v || null;
-  const lbl = document.getElementById('dateLabel');
-  const btn = document.getElementById('dateBtnShow');
-  if (v) { lbl.textContent = fmtDateShort(v); btn.classList.add('has-date'); }
-  else { lbl.textContent = 'Datum splnění'; btn.classList.remove('has-date'); }
+  dueDate = v||null;
+  const lbl=document.getElementById('dateLabel'), btn=document.getElementById('dateBtnShow');
+  if(v){lbl.textContent=fmtShort(v);btn.classList.add('has-date');}
+  else{lbl.textContent='Datum splnění';btn.classList.remove('has-date');}
 }
-
 function toggleUrgent() {
-  urgent = !urgent;
-  document.getElementById('urgentBtn').classList.toggle('on', urgent);
-  document.getElementById('urgentLabel').textContent = urgent ? 'Urgentní!' : 'Urgentní';
+  urgent=!urgent;
+  document.getElementById('urgentBtn').classList.toggle('on',urgent);
+  document.getElementById('urgentLabel').textContent=urgent?'Urgentní!':'Urgentní';
 }
-
-function openEditDate() {
-  const el = document.getElementById('editDateInput');
-  try { el.showPicker(); } catch(e) { el.click(); }
-}
-
+function openEditDate() { const el=document.getElementById('editDateInput'); try{el.showPicker();}catch(e){el.click();} }
 function onEditDateChange(v) {
-  editDueDate = v || null;
-  const lbl = document.getElementById('editDateLabel');
-  const btn = document.getElementById('editDateBtn');
-  if (v) { lbl.textContent = fmtDateShort(v); btn.classList.add('has-date'); }
-  else { lbl.textContent = 'Datum splnění'; btn.classList.remove('has-date'); }
+  editDueDate=v||null;
+  const lbl=document.getElementById('editDateLabel'), btn=document.getElementById('editDateBtn');
+  if(v){lbl.textContent=fmtShort(v);btn.classList.add('has-date');}
+  else{lbl.textContent='Datum splnění';btn.classList.remove('has-date');}
 }
-
 function toggleEditUrgent() {
-  editUrgent = !editUrgent;
-  document.getElementById('editUrgentBtn').classList.toggle('on', editUrgent);
-  document.getElementById('editUrgentLabel').textContent = editUrgent ? 'Urgentní!' : 'Urgentní';
+  editUrgent=!editUrgent;
+  document.getElementById('editUrgentBtn').classList.toggle('on',editUrgent);
+  document.getElementById('editUrgentLabel').textContent=editUrgent?'Urgentní!':'Urgentní';
 }
-
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); addTask(); }
-}
+function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();addTask();} }
+function handleRemKey(e) { if(e.key==='Enter'){e.preventDefault();addReminder();} }
 
 async function api(method, path, body) {
-  const r = await fetch(URL + '/rest/v1/' + path, {
+  const r = await fetch(SURL+'/rest/v1/'+path, {
     method,
-    headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': method === 'POST' ? 'return=representation' : '' },
-    body: body ? JSON.stringify(body) : undefined
+    headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':method==='POST'?'return=representation':''},
+    body: body?JSON.stringify(body):undefined
   });
-  if (!r.ok) throw new Error(await r.text());
-  if (r.status === 204) return null;
+  if(!r.ok) throw new Error(await r.text());
+  if(r.status===204) return null;
   return r.json();
 }
 
 async function loadTasks() {
-  try { tasks = await api('GET', 'ukoly?order=created_at.desc'); render(); }
-  catch(e) { document.getElementById('taskList').innerHTML = '<div class="empty">Chyba při načítání</div>'; }
+  try { tasks = await api('GET','ukoly?order=created_at.desc'); render(); }
+  catch(e) { document.getElementById('taskList').innerHTML='<div class="empty">Chyba při načítání</div>'; }
 }
 
 async function addTask() {
-  const text = document.getElementById('newTask').value.trim();
-  if (!text) return;
-  const btn = document.getElementById('addBtn');
-  btn.disabled = true;
+  const text=document.getElementById('newTask').value.trim();
+  if(!text) return;
+  const btn=document.getElementById('addBtn');
+  btn.disabled=true;
   try {
-    const payload = { text, kategorie: tab, autor: user, pro: assignee, urgentni: urgent };
-    if (dueDate) payload.due_date = dueDate;
-    const [t] = await api('POST', 'ukoly', payload);
+    const p={text, kategorie:tab, autor:user, pro:assignee, urgentni:urgent};
+    if(dueDate) p.due_date=dueDate;
+    const [t]=await api('POST','ukoly',p);
     tasks.unshift(t);
-    document.getElementById('newTask').value = '';
-    dueDate = null; urgent = false;
-    document.getElementById('dateInput').value = '';
-    onDateChange('');
+    document.getElementById('newTask').value='';
+    dueDate=null; urgent=false;
+    document.getElementById('dateInput').value=''; onDateChange('');
     document.getElementById('urgentBtn').classList.remove('on');
-    document.getElementById('urgentLabel').textContent = 'Urgentní';
-    btn.classList.add('ok'); btn.textContent = '✓ Přidáno';
-    setTimeout(() => { btn.classList.remove('ok'); btn.textContent = '+ Přidat'; }, 1500);
-    toast('✓ Úkol byl přidán');
-    render();
-  } catch(e) { alert('Chyba: ' + e.message); }
-  btn.disabled = false;
+    document.getElementById('urgentLabel').textContent='Urgentní';
+    btn.classList.add('ok'); btn.textContent='✓ Přidáno';
+    setTimeout(()=>{btn.classList.remove('ok');btn.textContent='+ Přidat';},1500);
+    toast('✓ Přidáno'); render();
+  } catch(e){alert('Chyba: '+e.message);}
+  btn.disabled=false;
+}
+
+async function addReminder() {
+  const text=document.getElementById('newRem').value.trim();
+  const date=document.getElementById('remDate').value;
+  const time=document.getElementById('remTime').value;
+  if(!text||!date){toast('Vyplňte název a datum');return;}
+  const btn=document.getElementById('addRemBtn');
+  btn.disabled=true;
+  try {
+    const p={text, kategorie:'pripominky', autor:user, pro:user};
+    p.due_date=date;
+    if(time) p.cas=time;
+    const [t]=await api('POST','ukoly',p);
+    tasks.unshift(t);
+    document.getElementById('newRem').value='';
+    document.getElementById('remDate').value='';
+    document.getElementById('remTime').value='';
+    btn.classList.add('ok'); btn.textContent='✓ Přidáno';
+    setTimeout(()=>{btn.classList.remove('ok');btn.textContent='+ Přidat';},1500);
+    toast('✓ Připomínka přidána'); render();
+  } catch(e){alert('Chyba: '+e.message);}
+  btn.disabled=false;
 }
 
 async function toggleDone(id) {
-  const t = tasks.find(x => x.id === id);
-  if (!t) return;
-  t.hotovo = !t.hotovo;
-  render();
-  try { await api('PATCH', 'ukoly?id=eq.' + id, { hotovo: t.hotovo }); }
-  catch(e) { t.hotovo = !t.hotovo; render(); }
+  const t=tasks.find(x=>x.id===id); if(!t) return;
+  t.hotovo=!t.hotovo; render();
+  try{await api('PATCH','ukoly?id=eq.'+id,{hotovo:t.hotovo});}
+  catch(e){t.hotovo=!t.hotovo;render();}
 }
 
-// EDIT
 function openEdit(id) {
-  const t = tasks.find(x => x.id === id);
-  if (!t) return;
-  editId = id;
-  editAssignee = t.pro || t.autor || 'radek';
-  editDueDate = t.due_date || null;
-  editUrgent = t.urgentni || false;
-  document.getElementById('editText').value = t.text;
+  const t=tasks.find(x=>x.id===id); if(!t) return;
+  editId=id; editAssignee=t.pro||t.autor||'radek'; editDueDate=t.due_date||null; editUrgent=t.urgentni||false;
+  document.getElementById('editText').value=t.text;
   setEditAssignee(editAssignee);
-  document.getElementById('editDateInput').value = editDueDate || '';
-  onEditDateChange(editDueDate || '');
-  document.getElementById('editUrgentBtn').classList.toggle('on', editUrgent);
-  document.getElementById('editUrgentLabel').textContent = editUrgent ? 'Urgentní!' : 'Urgentní';
+  document.getElementById('editDateInput').value=editDueDate||''; onEditDateChange(editDueDate||'');
+  document.getElementById('editUrgentBtn').classList.toggle('on',editUrgent);
+  document.getElementById('editUrgentLabel').textContent=editUrgent?'Urgentní!':'Urgentní';
   document.getElementById('editModal').classList.add('open');
 }
-
-function closeEdit() {
-  document.getElementById('editModal').classList.remove('open');
-  editId = null;
-}
-
+function closeEdit(){document.getElementById('editModal').classList.remove('open'); editId=null;}
 async function saveEdit() {
-  const text = document.getElementById('editText').value.trim();
-  if (!text) return;
-  const payload = { text, pro: editAssignee, urgentni: editUrgent, due_date: editDueDate || null };
+  const text=document.getElementById('editText').value.trim(); if(!text) return;
   try {
-    await api('PATCH', 'ukoly?id=eq.' + editId, payload);
-    const t = tasks.find(x => x.id === editId);
-    if (t) { t.text = text; t.pro = editAssignee; t.urgentni = editUrgent; t.due_date = editDueDate; }
-    closeEdit();
-    toast('✓ Úkol upraven');
-    render();
-  } catch(e) { alert('Chyba: ' + e.message); }
+    await api('PATCH','ukoly?id=eq.'+editId,{text, pro:editAssignee, urgentni:editUrgent, due_date:editDueDate||null});
+    const t=tasks.find(x=>x.id===editId);
+    if(t){t.text=text;t.pro=editAssignee;t.urgentni=editUrgent;t.due_date=editDueDate;}
+    closeEdit(); toast('✓ Uloženo'); render();
+  } catch(e){alert('Chyba: '+e.message);}
 }
 
-// DELETE
-function askDelete(id) {
-  deleteId = id;
-  document.getElementById('confirmModal').classList.add('open');
+function openEditRem(id) {
+  const t=tasks.find(x=>x.id===id); if(!t) return;
+  editRemId=id;
+  document.getElementById('editRemText').value=t.text;
+  document.getElementById('editRemDate').value=t.due_date||'';
+  document.getElementById('editRemTime').value=t.cas||'';
+  document.getElementById('editRemModal').classList.add('open');
+}
+function closeEditRem(){document.getElementById('editRemModal').classList.remove('open'); editRemId=null;}
+async function saveEditRem() {
+  const text=document.getElementById('editRemText').value.trim();
+  const date=document.getElementById('editRemDate').value;
+  const time=document.getElementById('editRemTime').value;
+  if(!text||!date) return;
+  try {
+    await api('PATCH','ukoly?id=eq.'+editRemId,{text, due_date:date, cas:time||null});
+    const t=tasks.find(x=>x.id===editRemId);
+    if(t){t.text=text;t.due_date=date;t.cas=time||null;}
+    closeEditRem(); toast('✓ Uloženo'); render();
+  } catch(e){alert('Chyba: '+e.message);}
 }
 
-function closeConfirm() {
-  document.getElementById('confirmModal').classList.remove('open');
-  deleteId = null;
-}
-
+function askDelete(id){deleteId=id; document.getElementById('confirmModal').classList.add('open');}
+function closeConfirm(){document.getElementById('confirmModal').classList.remove('open'); deleteId=null;}
 async function confirmDelete() {
-  if (!deleteId) return;
-  const id = deleteId;
-  closeConfirm();
-  tasks = tasks.filter(x => x.id !== id);
-  render();
-  try { await api('DELETE', 'ukoly?id=eq.' + id); toast('Úkol smazán'); }
-  catch(e) { loadTasks(); }
+  if(!deleteId) return;
+  const id=deleteId; closeConfirm();
+  tasks=tasks.filter(x=>x.id!==id); render();
+  try{await api('DELETE','ukoly?id=eq.'+id); toast('Smazáno');}
+  catch(e){loadTasks();}
 }
 
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 2200);
+function toast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2200);
 }
 
-function fmtDateShort(s) {
-  if (!s) return '';
-  const d = new Date(s + 'T00:00:00');
-  return d.getDate() + '. ' + (d.getMonth()+1) + '. ' + d.getFullYear();
+function fmtShort(s) {
+  if(!s) return '';
+  const d=new Date(s+'T00:00:00');
+  return d.getDate()+'. '+(d.getMonth()+1)+'. '+d.getFullYear();
 }
 
 function fmtDue(s) {
-  if (!s) return null;
-  const d = new Date(s + 'T00:00:00');
-  const now = new Date(); now.setHours(0,0,0,0);
-  const diff = Math.floor((d - now) / 86400000);
-  return { lbl: (diff < 0 ? 'Prošlé: ' : 'Do: ') + fmtDateShort(s), late: diff < 0 };
+  if(!s) return null;
+  const d=new Date(s+'T00:00:00'), now=new Date(); now.setHours(0,0,0,0);
+  const diff=Math.floor((d-now)/86400000);
+  return {lbl:(diff<0?'Prošlé: ':'Do: ')+fmtShort(s), late:diff<0};
 }
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 function updateCounts() {
-  TABS.forEach(t => {
-    const n = tasks.filter(x => x.kategorie === t && !x.hotovo).length;
-    const el = document.getElementById('cnt-' + t);
-    if (el) el.textContent = n;
+  TABS.forEach(t=>{
+    const n = t==='pripominky'
+      ? tasks.filter(x=>x.kategorie===t&&!x.hotovo).length
+      : tasks.filter(x=>x.kategorie===t&&!x.hotovo).length;
+    const el=document.getElementById('cnt-'+t);
+    if(el) el.textContent=n;
   });
 }
 
 function render() {
   updateCounts();
-  const filtered = tasks.filter(t => t.kategorie === tab);
-  const active = filtered.filter(t => !t.hotovo);
-  const done = filtered.filter(t => t.hotovo);
-  if (!filtered.length) { document.getElementById('taskList').innerHTML = '<div class="empty">Zatím nic</div>'; return; }
-  let html = cards(active);
-  if (done.length) html += '<div class="sec-header" style="margin-top:16px"><span class="sec-title">Hotovo</span><span class="sec-count">' + done.length + '</span></div>' + cards(done);
-  document.getElementById('taskList').innerHTML = html;
+  if(tab==='pripominky'){renderReminders();return;}
+  const filtered=tasks.filter(t=>t.kategorie===tab);
+  const active=filtered.filter(t=>!t.hotovo);
+  const done=filtered.filter(t=>t.hotovo);
+  if(!filtered.length){document.getElementById('taskList').innerHTML='<div class="empty">Zatím nic</div>';return;}
+  let html=taskCards(active);
+  if(done.length) html+='<div class="sec-header" style="margin-top:16px"><span class="sec-title">Hotovo</span><span class="sec-count">'+done.length+'</span></div>'+taskCards(done);
+  document.getElementById('taskList').innerHTML=html;
 }
 
-function cards(items) {
-  return items.map(t => {
-    const pro = t.pro || t.autor || 'radek';
-    const proName = USERS[pro] || pro;
-    const due = fmtDue(t.due_date);
-    const isUrg = t.urgentni && !t.hotovo;
+function renderReminders() {
+  const now = new Date(); now.setHours(0,0,0,0);
+  const rems = tasks.filter(t=>t.kategorie==='pripominky');
+  if(!rems.length){document.getElementById('taskList').innerHTML='<div class="empty">Zatím žádné připomínky</div>';return;}
+
+  // sort by date asc, past at bottom
+  const upcoming = rems.filter(r=>r.due_date && new Date(r.due_date+'T00:00:00')>=now).sort((a,b)=>new Date(a.due_date)-new Date(b.due_date));
+  const past = rems.filter(r=>!r.due_date || new Date(r.due_date+'T00:00:00')<now).sort((a,b)=>new Date(b.due_date||b.created_at)-new Date(a.due_date||a.created_at));
+
+  let html='';
+  if(upcoming.length) html+=upcoming.map(r=>remCard(r,false)).join('');
+  if(past.length){
+    html+='<div class="sec-header" style="margin-top:16px"><span class="sec-title">Minulé</span><span class="sec-count">'+past.length+'</span></div>';
+    html+=past.map(r=>remCard(r,true)).join('');
+  }
+  document.getElementById('taskList').innerHTML=html;
+}
+
+function remCard(t, isPast) {
+  const d = t.due_date ? new Date(t.due_date+'T00:00:00') : null;
+  const day = d ? d.getDate() : '?';
+  const month = d ? MONTHS[d.getMonth()] : '';
+  const timeStr = t.cas ? t.cas.slice(0,5) : '';
+  return `<div class="rem-card ${isPast?'past':''}">
+    <div class="rem-date-block">
+      <div class="rem-day">${day}</div>
+      <div class="rem-month">${month}</div>
+    </div>
+    <div class="rem-body">
+      <div class="rem-title">${esc(t.text)}</div>
+      ${timeStr ? `<div class="rem-time-tag">🕐 ${timeStr}</div>` : ''}
+      ${isPast ? `<span class="rem-past-tag">Minulé</span>` : ''}
+    </div>
+    <div class="card-actions">
+      <button class="action-btn" onclick="openEditRem(${t.id})">✏️</button>
+      <button class="action-btn del" onclick="askDelete(${t.id})">🗑️</button>
+    </div>
+  </div>`;
+}
+
+function taskCards(items) {
+  return items.map(t=>{
+    const pro=t.pro||t.autor||'radek';
+    const proName=USERS[pro]||pro;
+    const due=fmtDue(t.due_date);
+    const isUrg=t.urgentni&&!t.hotovo;
     return `<div class="card ${t.hotovo?'done':''} ${isUrg?'urgent':''}">
       <div class="cb ${t.hotovo?'chk':''}" onclick="toggleDone(${t.id})"></div>
       <div class="card-body">
         <div class="card-text">${esc(t.text)}</div>
         <div class="card-foot">
           <div class="card-tags">
-            ${due ? `<span class="due-tag ${due.late?'late':''}">${esc(due.lbl)}</span>` : ''}
-            ${isUrg ? `<span class="urg-tag">🔴 Urgentní</span>` : ''}
+            ${due?`<span class="due-tag ${due.late?'late':''}">${esc(due.lbl)}</span>`:''}
+            ${isUrg?`<span class="urg-tag">🔴 Urgentní</span>`:''}
           </div>
           <div class="pro-badge ${pro}"><div class="pro-dot"></div>${esc(proName)}</div>
         </div>
       </div>
       <div class="card-actions">
-        <button class="action-btn" onclick="openEdit(${t.id})" title="Upravit">✏️</button>
-        <button class="action-btn del" onclick="askDelete(${t.id})" title="Smazat">🗑️</button>
+        <button class="action-btn" onclick="openEdit(${t.id})">✏️</button>
+        <button class="action-btn del" onclick="askDelete(${t.id})">🗑️</button>
       </div>
     </div>`;
   }).join('');
 }
 
-window.onload = function() {
-  const saved = localStorage.getItem('u');
-  if (saved && USERS[saved]) loginAs(saved);
+window.onload=function(){
+  const saved=localStorage.getItem('u');
+  if(saved&&USERS[saved]) loginAs(saved);
 };
-setInterval(loadTasks, 30000);
+setInterval(loadTasks,30000);
 </script>
 </body>
 </html>
