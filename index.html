@@ -23,7 +23,7 @@
   .login-hint { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; text-align: left; }
 
   /* APP */
-  #appScreen { display: none; visibility: hidden; }
+  #appScreen { display: none; }
   .top-bar { background: white; border-bottom: 1px solid #e8e8e4; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
   .top-bar h1 { font-size: 18px; font-weight: 600; color: #1a1a1a; }
   .top-bar-user { display: flex; align-items: center; gap: 8px; }
@@ -219,11 +219,8 @@ const TAB_PH = { ukoly: 'Nový úkol...', pripominky: 'Nová připomínka...', h
 function loginAs(u) {
   currentUser = u;
   localStorage.setItem('ukoly_user', u);
-  const ls = document.getElementById('loginScreen');
-  const as = document.getElementById('appScreen');
-  ls.style.display = 'none';
-  as.style.display = 'block';
-  as.style.visibility = 'visible';
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appScreen').style.display = 'block';
   updateTopBar();
   setAssignee(u);
   loadTasks();
@@ -232,9 +229,7 @@ function loginAs(u) {
 function switchUser() {
   localStorage.removeItem('ukoly_user');
   currentUser = null;
-  const as = document.getElementById('appScreen');
-  as.style.display = 'none';
-  as.style.visibility = 'hidden';
+  document.getElementById('appScreen').style.display = 'none';
   document.getElementById('loginScreen').style.display = 'flex';
 }
 
