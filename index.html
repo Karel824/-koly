@@ -23,7 +23,7 @@
   .login-hint { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; text-align: left; }
 
   /* APP */
-  #appScreen { display: none; }
+  #appScreen { display: none; visibility: hidden; }
   .top-bar { background: white; border-bottom: 1px solid #e8e8e4; padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
   .top-bar h1 { font-size: 18px; font-weight: 600; color: #1a1a1a; }
   .top-bar-user { display: flex; align-items: center; gap: 8px; }
@@ -132,7 +132,7 @@
   <div class="login-users">
     <button class="login-user-btn radek" onclick="loginAs('radek')">
       <div class="login-avatar">R</div>
-      <div><div class="login-name">Radek</div><div class="login-hint">táta</div></div>
+      <div><div class="login-name">Radek</div></div>
     </button>
     <button class="login-user-btn vasek" onclick="loginAs('vasek')">
       <div class="login-avatar">V</div>
@@ -219,8 +219,11 @@ const TAB_PH = { ukoly: 'Nový úkol...', pripominky: 'Nová připomínka...', h
 function loginAs(u) {
   currentUser = u;
   localStorage.setItem('ukoly_user', u);
-  document.getElementById('loginScreen').style.display = 'none';
-  document.getElementById('appScreen').style.display = 'block';
+  const ls = document.getElementById('loginScreen');
+  const as = document.getElementById('appScreen');
+  ls.style.display = 'none';
+  as.style.display = 'block';
+  as.style.visibility = 'visible';
   updateTopBar();
   setAssignee(u);
   loadTasks();
@@ -229,7 +232,9 @@ function loginAs(u) {
 function switchUser() {
   localStorage.removeItem('ukoly_user');
   currentUser = null;
-  document.getElementById('appScreen').style.display = 'none';
+  const as = document.getElementById('appScreen');
+  as.style.display = 'none';
+  as.style.visibility = 'hidden';
   document.getElementById('loginScreen').style.display = 'flex';
 }
 
